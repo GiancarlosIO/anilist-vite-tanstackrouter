@@ -11,6 +11,7 @@
     "ui": "shadcn-ui"
   },
   "dependencies": {
+    "@radix-ui/react-slot": "1.0.2",
     "@tanstack/react-router": "1.7.1",
     "@tanstack/router-devtools": "1.7.1",
     "@types/node": "20.11.5",
