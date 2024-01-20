@@ -8,6 +8,7 @@ import { Route as NotFoundImport } from './routes/not-found'
 import { Route as LayoutImport } from './routes/_layout'
 import { Route as LayoutIndexImport } from './routes/_layout/index'
 import { Route as PanelEmployeeImport } from './routes/panel.employee'
+import { Route as LayoutSearchAnimeImport } from './routes/_layout/search.anime'
 import { Route as LayoutAnimeAnimdIdAnimeSlugImport } from './routes/_layout/anime.$animdId.$animeSlug'
 
 // Create/Update Routes
@@ -35,6 +36,11 @@ const LayoutIndexRoute = LayoutIndexImport.update({
 const PanelEmployeeRoute = PanelEmployeeImport.update({
   path: '/employee',
   getParentRoute: () => PanelRoute,
+} as any)
+
+const LayoutSearchAnimeRoute = LayoutSearchAnimeImport.update({
+  path: '/search/anime',
+  getParentRoute: () => LayoutRoute,
 } as any)
 
 const LayoutAnimeAnimdIdAnimeSlugRoute =
@@ -67,6 +73,10 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LayoutIndexImport
       parentRoute: typeof LayoutImport
     }
+    '/_layout/search/anime': {
+      preLoaderRoute: typeof LayoutSearchAnimeImport
+      parentRoute: typeof LayoutImport
+    }
     '/_layout/anime/$animdId/$animeSlug': {
       preLoaderRoute: typeof LayoutAnimeAnimdIdAnimeSlugImport
       parentRoute: typeof LayoutImport
@@ -77,7 +87,11 @@ declare module '@tanstack/react-router' {
 // Create and export the route tree
 
 export const routeTree = rootRoute.addChildren([
-  LayoutRoute.addChildren([LayoutIndexRoute, LayoutAnimeAnimdIdAnimeSlugRoute]),
+  LayoutRoute.addChildren([
+    LayoutIndexRoute,
+    LayoutSearchAnimeRoute,
+    LayoutAnimeAnimdIdAnimeSlugRoute,
+  ]),
   NotFoundRoute,
   PanelRoute.addChildren([PanelEmployeeRoute]),
 ])

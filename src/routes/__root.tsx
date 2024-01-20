@@ -14,27 +14,33 @@ const TanStackRouterDevtools =
       );
 
 export const Route = new RootRoute({
-  component: () => (
+  component: RootComponentRoute,
+});
+
+function RootComponentRoute() {
+  const linkClass =
+    'px-4 py-2 data-[status=active]:text-teal-300 data-[status=active]:underline';
+  return (
     <>
-      <div className="p-2 flex gap-2">
-        <Link to="/" className="[&.active]:font-bold">
-          Home
-        </Link>
-        <Link
-          to="/anime/$animdId/$animeSlug"
-          params={{
-            animdId: '154587',
-            animeSlug: 'Sousou-no-Frieren',
-          }}
-          className="[&.active]:font-bold">
-          animeDetail
-        </Link>
+      <header className="bg-teal-950">
+        <nav className="container mx-auto flex justify-between items-center text-white">
+          <img src="/logo.svg" width={50} height={50} />
+          <div className="flex gap-4">
+            <Link className={linkClass} to="/">
+              Home
+            </Link>
+            <Link className={linkClass} to="/search/anime">
+              Search
+            </Link>
+          </div>
+        </nav>
+      </header>
+      <div className="container mx-auto">
+        <Outlet />
       </div>
-      <hr />
-      <Outlet />
       <Suspense>
         <TanStackRouterDevtools />
       </Suspense>
     </>
-  ),
-});
+  );
+}
