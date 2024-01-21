@@ -1,11 +1,7 @@
 import { Button } from '@/components/ui/button';
-import { FileRoute, Link } from '@tanstack/react-router';
+import { Link } from '@tanstack/react-router';
 
-export const Route = new FileRoute('/_layout/').createRoute({
-  component: IndexRoute,
-});
-
-function IndexRoute() {
+export function component() {
   return (
     <>
       <div className="p-12 flex items-center justify-center bg-slate-950 rounded-sm mt-12">
