@@ -50,7 +50,10 @@ export function SearchAnimePage() {
                 <Link
                   to="/search/anime/$category"
                   params={{
-                    category: section.key === 'nextSeason' ? 'next-season' : '',
+                    category:
+                      section.key === 'nextSeason'
+                        ? 'next-season'
+                        : section.key,
                   }}>
                   <Title title={section.title} />
                 </Link>
