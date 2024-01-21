@@ -1,3 +1,4 @@
+import { ThemeSwitcher } from '@/components/ThemeSwitcher';
 import { Link, Outlet, RootRoute } from '@tanstack/react-router';
 import { lazy, Suspense } from 'react';
 
@@ -32,6 +33,7 @@ function RootComponentRoute() {
             <Link className={linkClass} to="/search/anime">
               Search
             </Link>
+            <ThemeSwitcher />
           </div>
         </nav>
       </header>
