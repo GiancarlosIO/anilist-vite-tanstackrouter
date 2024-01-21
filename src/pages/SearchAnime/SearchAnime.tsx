@@ -50,7 +50,7 @@ export function SearchAnimePage() {
                 <Link
                   to="/search/anime/$category"
                   params={{
-                    category: section.key,
+                    category: section.key === 'nextSeason' ? 'next-season' : '',
                   }}>
                   <Title title={section.title} />
                 </Link>
@@ -88,7 +88,10 @@ function Card({ media }: { media?: MediaFragmentFragment | null }) {
         to="/anime/$animeId/$animeSlug"
         params={{
           animeId: media.id.toString(),
-          animeSlug: slugify(media.title?.userPreferred || ''),
+          animeSlug: slugify(media.title?.userPreferred || '', {
+            lower: true,
+            strict: true,
+          }),
         }}
         className="group">
         <img
