@@ -37,8 +37,10 @@ function RootComponentRoute() {
           </div>
         </nav>
       </header>
-      <div className="container mx-auto bg-teal-50 h-full">
-        <Outlet />
+      <div className="bg-teal-50 h-full">
+        <div className="container mx-autoh-full">
+          <Outlet />
+        </div>
       </div>
       <Suspense>
         <TanStackRouterDevtools />

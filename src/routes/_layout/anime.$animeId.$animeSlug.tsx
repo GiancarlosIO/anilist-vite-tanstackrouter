@@ -1,7 +1,7 @@
 import { FileRoute } from '@tanstack/react-router';
 
 export const Route = new FileRoute(
-  '/_layout/anime/$animdId/$animeSlug'
+  '/_layout/anime/$animeId/$animeSlug'
 ).createRoute({
   component: AnimePageRoute,
   // loader({ params }) {

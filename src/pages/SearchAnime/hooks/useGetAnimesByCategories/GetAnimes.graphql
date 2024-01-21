@@ -6,7 +6,7 @@ query SearchAnimeInitialAnimesQuery(
 ) {
   trending: Page(page: 1, perPage: 6) {
     media(sort: TRENDING_DESC, type: ANIME, isAdult: false) {
-      ...media
+      ...MediaFragment
     }
   }
   season: Page(page: 1, perPage: 6) {
@@ -17,7 +17,7 @@ query SearchAnimeInitialAnimesQuery(
       type: ANIME
       isAdult: false
     ) {
-      ...media
+      ...MediaFragment
     }
   }
   nextSeason: Page(page: 1, perPage: 6) {
@@ -28,21 +28,21 @@ query SearchAnimeInitialAnimesQuery(
       type: ANIME
       isAdult: false
     ) {
-      ...media
+      ...MediaFragment
     }
   }
   popular: Page(page: 1, perPage: 6) {
     media(sort: POPULARITY_DESC, type: ANIME, isAdult: false) {
-      ...media
+      ...MediaFragment
     }
   }
   top: Page(page: 1, perPage: 10) {
     media(sort: SCORE_DESC, type: ANIME, isAdult: false) {
-      ...media
+      ...MediaFragment
     }
   }
 }
-fragment media on Media {
+fragment MediaFragment on Media {
   id
   title {
     userPreferred
