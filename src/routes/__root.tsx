@@ -35,7 +35,7 @@ function RootComponentRoute() {
           </div>
         </nav>
       </header>
-      <div className="container mx-auto">
+      <div className="container mx-auto bg-teal-50 h-full">
         <Outlet />
       </div>
       <Suspense>

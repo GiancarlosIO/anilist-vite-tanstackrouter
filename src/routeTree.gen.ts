@@ -9,6 +9,7 @@ import { Route as LayoutImport } from './routes/_layout'
 import { Route as LayoutIndexImport } from './routes/_layout/index'
 import { Route as PanelEmployeeImport } from './routes/panel.employee'
 import { Route as LayoutSearchAnimeImport } from './routes/_layout/search.anime'
+import { Route as LayoutSearchAnimeTrendingImport } from './routes/_layout/search.anime.trending'
 import { Route as LayoutAnimeAnimdIdAnimeSlugImport } from './routes/_layout/anime.$animdId.$animeSlug'
 
 // Create/Update Routes
@@ -41,6 +42,11 @@ const PanelEmployeeRoute = PanelEmployeeImport.update({
 const LayoutSearchAnimeRoute = LayoutSearchAnimeImport.update({
   path: '/search/anime',
   getParentRoute: () => LayoutRoute,
+} as any)
+
+const LayoutSearchAnimeTrendingRoute = LayoutSearchAnimeTrendingImport.update({
+  path: '/trending',
+  getParentRoute: () => LayoutSearchAnimeRoute,
 } as any)
 
 const LayoutAnimeAnimdIdAnimeSlugRoute =
@@ -81,6 +87,10 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LayoutAnimeAnimdIdAnimeSlugImport
       parentRoute: typeof LayoutImport
     }
+    '/_layout/search/anime/trending': {
+      preLoaderRoute: typeof LayoutSearchAnimeTrendingImport
+      parentRoute: typeof LayoutSearchAnimeImport
+    }
   }
 }
 
@@ -89,7 +99,7 @@ declare module '@tanstack/react-router' {
 export const routeTree = rootRoute.addChildren([
   LayoutRoute.addChildren([
     LayoutIndexRoute,
-    LayoutSearchAnimeRoute,
+    LayoutSearchAnimeRoute.addChildren([LayoutSearchAnimeTrendingRoute]),
     LayoutAnimeAnimdIdAnimeSlugRoute,
   ]),
   NotFoundRoute,
