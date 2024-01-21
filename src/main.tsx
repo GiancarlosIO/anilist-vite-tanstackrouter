@@ -7,6 +7,7 @@ import { client } from './lib/apollo/client';
 import { Route as rootRoute } from './routes/__root';
 // Import the generated route tree
 import { routeTree } from './routeTree.gen';
+import { LS_THEME_KEY } from './stores/Theme';
 
 const notFoundRoute = new NotFoundRoute({
   getParentRoute: () => rootRoute,
@@ -21,6 +22,17 @@ declare module '@tanstack/react-router' {
   interface Register {
     router: typeof router;
   }
+}
+
+// On page load or when changing themes, best to add inline in `head` to avoid FOUC
+if (
+  localStorage.getItem(LS_THEME_KEY) === 'dark' ||
+  (!(LS_THEME_KEY in localStorage) &&
+    window.matchMedia('(prefers-color-scheme: dark)').matches)
+) {
+  document.documentElement.classList.add('dark');
+} else {
+  document.documentElement.classList.remove('dark');
 }
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
